@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+import bcrypt
 
 from ..database import get_db
 from .. import models, schemas
@@ -9,7 +10,11 @@ router = APIRouter(prefix="/auth", tags=["Autenticação"])
 
 @router.post("/login", response_model=schemas.LoginResponse)
 def login(dados: schemas.LoginRequest, db: Session = Depends(get_db)):
-    usuario = db.query(models.Usuario).filter(models.Usuario.email == dados.email).first()
+    usuario = (
+        db.query(models.Usuario)
+        .filter(models.Usuario.email == dados.email)
+        .first()
+    )
 
     if not usuario:
         raise HTTPException(
@@ -17,9 +22,11 @@ def login(dados: schemas.LoginRequest, db: Session = Depends(get_db)):
             detail="Credenciais inválidas"
         )
 
-    # Aqui estamos só comparando texto puro porque no banco tem mock.
-    # No projeto de segurança você mostra o hash de verdade.
-    if usuario.senha_hash != dados.senha:
+    # Verificando senha com bcrypt
+    senha_digitada = dados.senha.encode()
+    senha_hash_salva = usuario.senha_hash.encode()
+
+    if not bcrypt.checkpw(senha_digitada, senha_hash_salva):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Credenciais inválidas"

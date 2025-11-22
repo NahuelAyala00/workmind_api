@@ -7,7 +7,7 @@ load_dotenv()
 
 # Ajuste esses valores com o que você usa no Postgres
 DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "sua_senha")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "161102")
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_PORT = os.getenv("DB_PORT", "5432")
 DB_NAME = os.getenv("DB_NAME", "workmind_db")

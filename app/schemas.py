@@ -10,12 +10,16 @@ class UsuarioBase(BaseModel):
     cargo: Optional[str] = None
 
 
+class UsuarioCreate(UsuarioBase):
+    senha: str  # usado apenas na criação do usuário
+
+
 class UsuarioResponse(UsuarioBase):
     id_usuario: int
     data_criacao: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
+        orm_mode = True  # ok, mesmo com aviso no Pydantic v2
 
 
 class CursoBase(BaseModel):

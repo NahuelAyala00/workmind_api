@@ -1,42 +1,19 @@
 # WorkMind – Plataforma Inteligente de Aprendizagem e Bem-Estar no Futuro do Trabalho
 
 ## 📌 Sobre o Projeto
-O **WorkMind** é uma plataforma desenvolvida como parte da **Global Solution – Engenharia de Software (FIAP, 2025/2)**.  
-Seu objetivo é integrar **IA, IoT, APIs e interfaces mobile** para apoiar:
-
-- Aprendizagem contínua e personalizada  
-- Monitoramento de bem-estar e ambiente  
-- Inclusão produtiva  
-- Preparação para carreiras emergentes do futuro  
-
-O projeto é dividido em módulos independentes: banco de dados, API, testes, segurança, mobile e IoT.
+O **WorkMind** é uma plataforma desenvolvida para a Global Solution – Engenharia de Software (FIAP, 2025/2).  
+Ela integra **IA, IoT, APIs e mobile** para apoiar aprendizagem personalizada, bem‑estar e preparação para carreiras do futuro.
 
 ---
 
-## 🧠 Principais Funcionalidades
-### 🔹 IA de Aprendizagem Adaptativa (conceitual)
-- Recomenda cursos
-- Gera trilhas personalizadas
-- Calcula progresso
-
-### 🔹 API REST (FastAPI)
-- Login com bcrypt  
-- Cadastro de usuário  
-- Listagem de cursos  
-- Trilha do usuário  
-- Dados de sensores IoT  
-
-### 🔹 IoT Simulado
-- Script Python que gera leituras de:
-  - Temperatura  
-  - Ruído  
-  - Luminosidade  
-- Dados armazenados no PostgreSQL e exibidos pela API
-
-### 🔹 Mobile (Mock HTML/CSS)
-- Dashboard  
-- Minha Trilha  
-- Monitoramento IoT  
+## 🧠 Funcionalidades
+- IA de trilhas adaptativas (conceitual)
+- API REST com FastAPI
+- Login seguro com bcrypt
+- Cadastro e listagem de usuários
+- Cursos e trilhas
+- Sensores IoT simulados
+- Telas mobile (mock HTML/CSS)
 
 ---
 
@@ -45,22 +22,34 @@ O projeto é dividido em módulos independentes: banco de dados, API, testes, se
 workmind_api/
 │
 ├── app/
-│   ├── routers/
-│   │   ├── auth.py
-│   │   ├── users.py
-│   │   ├── courses.py
-│   │   ├── sensors.py
-│   │   └── trails.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── database.py
 │   ├── models.py
 │   ├── schemas.py
-│   └── database.py
+│   └── routers/
+│       ├── __init__.py
+│       ├── auth.py
+│       ├── users.py
+│       ├── courses.py
+│       ├── sensors.py
+│       └── trails.py
 │
 ├── tests/
+│   ├── __init__.py
 │   ├── test_auth.py
 │   ├── test_users.py
 │   ├── test_courses.py
 │   ├── test_sensors.py
 │   └── test_trails.py
+│
+├── telas/
+│   ├── index.html
+│   └── WorkMind_Telas.pdf
+│
+├── docs/
+│   ├── WorkMind - Final.pdf
+│   └── Integrantes do grupo.txt
 │
 ├── iot_simulator.py
 ├── requirements.txt
@@ -69,69 +58,41 @@ workmind_api/
 
 ---
 
-## ⚙️ Como executar a API
-
-### 1. Instalar dependências
+## ⚙️ Executando a API
 ```bash
 pip install -r requirements.txt
-```
-
-### 2. Rodar o servidor
-```bash
 uvicorn app.main:app --reload
 ```
 
-### 3. Acessar documentação
+Documentação:
 ```
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/
 ```
 
 ---
 
 ## 🔧 Simulação IoT
-Para gerar leituras artificiais no banco:
-
 ```bash
 python iot_simulator.py
 ```
-
-As leituras aparecerão em:
-
+As leituras ficam disponíveis em:
 ```
 GET /sensores
 ```
 
 ---
 
-## 🛡 Segurança
-- Armazenamento de senha com **bcrypt**
-- Validação de entrada com Pydantic
-- ORM SQLAlchemy (evita SQL Injection)
-- Mensagens genéricas de erro
-
----
-
-## 🧪 Testes Automatizados
-Executar:
-
+## 🧪 Testes
 ```bash
 pytest
 ```
 
-O projeto inclui testes para:
-- Login  
-- Cadastro e listagem  
-- Cursos  
-- Trilhas  
-- Sensores IoT  
-
 ---
 
 ## 👨‍💻 Integrante
-- **Nahuel Isaias Ayala Molinas – RM 567887**
+- Nahuel Isaias Ayala Molinas – RM 567887
 
 ---
 
 ## 📄 Licença
-Projeto acadêmico — FIAP 2025.  
-Uso apenas para fins educacionais.
+Projeto acadêmico da FIAP – 2025.
